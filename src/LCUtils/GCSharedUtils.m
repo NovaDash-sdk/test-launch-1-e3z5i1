@@ -219,7 +219,7 @@ extern NSBundle* gcMainBundle;
 		return;
 	}
 	if (![Utils isSandboxed]) {
-		NSString* appBundleIdentifier = @"com.robtop.geometryjump";
+		NSString* appBundleIdentifier = @"com.dort.novadashhhhhhh";
 		[[LSApplicationWorkspace defaultWorkspace] openApplicationWithBundleID:appBundleIdentifier];
 		exit(0);
 		return;

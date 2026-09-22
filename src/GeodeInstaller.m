@@ -427,9 +427,9 @@ typedef void (^DecompressCompletion)(NSError* _Nullable error);
 	AppLog(@"Verifying GD version...");
 	NSDictionary* gdPlist;
 	if (![Utils isSandboxed]) {
-		gdPlist = [NSDictionary dictionaryWithContentsOfFile:[[Utils getGDBundlePath] stringByAppendingPathComponent:@"GeometryJump.app/Info.plist"]];
+		gdPlist = [NSDictionary dictionaryWithContentsOfFile:[[Utils getGDBundlePath] stringByAppendingPathComponent:@"NovaDash.app/Info.plist"]];
 	} else {
-		gdPlist = [NSDictionary dictionaryWithContentsOfURL:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.robtop.geometryjump.app/Info.plist"]];
+		gdPlist = [NSDictionary dictionaryWithContentsOfURL:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.dort.novadashhhhhhh.app/Info.plist"]];
 	}
 	NSString* hash = gdPlist[@"CFBundleShortVersionString"];
 	AppLog(@"Versions: %@ & %@", hash, GD_VERSION);

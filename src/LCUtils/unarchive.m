@@ -183,8 +183,8 @@ int addFileToArchive(struct archive* write, NSString* filePath, NSString* basePa
 	//"Payload/Cowabunga.app"
 	// relativePath = [@"Payload/GeodeHelper.app" stringByAppendingString:relativePath];
 	relativePath = [@"Payload/GD" stringByAppendingString:relativePath];
-	// relativePath = [relativePath stringByReplacingOccurrencesOfString:@"GDcom.robtop.geometryjump.app" withString:@"GeodeHelper.app"];
-	relativePath = [relativePath stringByReplacingOccurrencesOfString:@"GDcom.robtop.geometryjump.app" withString:@"GeometryJump.app"];
+	// relativePath = [relativePath stringByReplacingOccurrencesOfString:@"GDcom.dort.novadashhhhhhh.app" withString:@"GeodeHelper.app"];
+	relativePath = [relativePath stringByReplacingOccurrencesOfString:@"GDcom.dort.novadashhhhhhh.app" withString:@"NovaDash.app"];
 	archive_entry_set_pathname(entry, relativePath.fileSystemRepresentation);
 
 	NSString* fileType = attributes[NSFileType];

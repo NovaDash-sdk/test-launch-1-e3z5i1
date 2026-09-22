@@ -1015,7 +1015,7 @@ extern NSString *g_commitHash;
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 			NSString* infoPlistPath;
 			if (![Utils isSandboxed]) {
-				infoPlistPath = [[Utils getGDBundlePath] stringByAppendingPathComponent:@"GeometryJump.app/Info.plist"];
+				infoPlistPath = [[Utils getGDBundlePath] stringByAppendingPathComponent:@"NovaDash.app/Info.plist"];
 			} else {
 				infoPlistPath = [[[LCPath bundlePath] URLByAppendingPathComponent:[Utils gdBundleName]] URLByAppendingPathComponent:@"Info.plist"].path;
 			}
@@ -1111,12 +1111,12 @@ extern NSString *g_commitHash;
 			}
 		} custom:nil],
 		[Setting create:@"Copy Current Binary".loc type:SettingTypeButton disabled:^BOOL(){
-			return [fm fileExistsAtPath:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"].path];
+			return [fm fileExistsAtPath:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"].path];
 		} visible:nil prefsKey:nil switchTag:0 action:^{
 			// Copy Current Binary
-			if (![fm fileExistsAtPath:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"].path]) {
+			if (![fm fileExistsAtPath:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"].path]) {
 				NSError* err;
-				[fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] toURL:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] error:&err];
+				[fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"NovaDash"] toURL:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] error:&err];
 				if (err) {
 					[Utils showError:self title:@"Couldn't copy binary" error:err];
 				} else {
@@ -1127,7 +1127,7 @@ extern NSString *g_commitHash;
 		} custom:nil],
 		[Setting simpleCreate:@"Patch Binary".loc type:SettingTypeButton action:^{
 			// Patch
-			[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] to:[bundlePath URLByAppendingPathComponent:@"GeometryJump"]
+			[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] to:[bundlePath URLByAppendingPathComponent:@"NovaDash"]
 				withHandlerAddress:0x8c4000
 				force:YES
 				withSafeMode:NO
@@ -1142,16 +1142,16 @@ extern NSString *g_commitHash;
 			}];
 		} custom:nil],
 		[Setting create:@"Restore Binary".loc type:SettingTypeButton disabled:^BOOL(){
-			return ![fm fileExistsAtPath:[[[LCPath bundlePath] URLByAppendingPathComponent:[Utils gdBundleName]] URLByAppendingPathComponent:@"GeometryOriginal"].path];
+			return ![fm fileExistsAtPath:[[[LCPath bundlePath] URLByAppendingPathComponent:[Utils gdBundleName]] URLByAppendingPathComponent:@"NovaDashOriginal"].path];
 		} visible:nil prefsKey:nil switchTag:0 action:^{
 			// Restore Binary
 			NSError* err;
-			[fm removeItemAtURL:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] error:&err];
+			[fm removeItemAtURL:[bundlePath URLByAppendingPathComponent:@"NovaDash"] error:&err];
 			if (err) {
 				[Utils showError:self title:@"Couldn't remove patched binary" error:err];
 				return;
 			}
-			[fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] toURL:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] error:&err];
+			[fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] toURL:[bundlePath URLByAppendingPathComponent:@"NovaDash"] error:&err];
 			if (err) {
 				[Utils showError:self title:@"Couldn't copy binary" error:err];
 			} else {
@@ -1160,7 +1160,7 @@ extern NSString *g_commitHash;
 			}
 		} custom:nil],
 		[Setting simpleCreate:@"Export Binary".loc type:SettingTypeButton action:^{
-			UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[ [bundlePath URLByAppendingPathComponent:@"GeometryJump"] ] applicationActivities:nil];
+			UIActivityViewController* activityViewController = [[UIActivityViewController alloc] initWithActivityItems:@[ [bundlePath URLByAppendingPathComponent:@"NovaDash"] ] applicationActivities:nil];
 			// not sure if this is even necessary because ive never seen anyone complain about app logs
 			if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
 				activityViewController.popoverPresentationController.sourceRect = CGRectMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds), 0, 0);
@@ -1230,7 +1230,7 @@ extern NSString *g_commitHash;
 				[Utils showError:self title:@"Failed to copy Geode library" error:err];
 				return;
 			}
-			[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] to:[bundlePath URLByAppendingPathComponent:@"GeometryJump"]
+			[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] to:[bundlePath URLByAppendingPathComponent:@"NovaDash"]
 				withHandlerAddress:0x8c4000 force:YES withSafeMode:YES
 				withEntitlements:YES completionHandler:^(BOOL success, NSString* error) {
 				dispatch_async(dispatch_get_main_queue(), ^{
@@ -1254,7 +1254,7 @@ extern NSString *g_commitHash;
 				[Utils showError:self title:@"InfoBackup.plist missing!" error:nil];
 				return;
 			}
-			[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] to:[bundlePath URLByAppendingPathComponent:@"GeometryJump"]
+			[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] to:[bundlePath URLByAppendingPathComponent:@"NovaDash"]
 				withHandlerAddress:0x8c4000
 				force:YES
 				withSafeMode:YES
@@ -1403,15 +1403,15 @@ extern NSString *g_commitHash;
 		} else {
 			NSFileManager* fm = [NSFileManager defaultManager];
 			NSURL* bundlePath = [[LCPath bundlePath] URLByAppendingPathComponent:[Utils gdBundleName]];
-			if (![fm fileExistsAtPath:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"].path]) {
+			if (![fm fileExistsAtPath:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"].path]) {
 				AppLog(@"Not restoring binary.");
 			} else {
 				NSError* err;
-				[fm removeItemAtURL:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] error:&err];
+				[fm removeItemAtURL:[bundlePath URLByAppendingPathComponent:@"NovaDash"] error:&err];
 				if (err) {
 					AppLog(@"Couldn't remove patched binary: %@", err);
 				} else {
-					[fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] toURL:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] error:&err];
+					[fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] toURL:[bundlePath URLByAppendingPathComponent:@"NovaDash"] error:&err];
 					if (err) {
 						AppLog(@"Couldn't copy binary: %@", err);
 					} else {
@@ -1475,15 +1475,15 @@ extern NSString *g_commitHash;
 				[fm removeItemAtPath:[[fm temporaryDirectory] URLByAppendingPathComponent:@"tmp.zip"].path error:nil];
 			}
 			NSURL* bundlePath = [[LCPath bundlePath] URLByAppendingPathComponent:[Utils gdBundleName]];
-			if (![fm fileExistsAtPath:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"].path]) {
+			if (![fm fileExistsAtPath:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"].path]) {
 				AppLog(@"Not restoring binary.");
 			} else {
 				NSError* err;
-				[fm removeItemAtURL:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] error:&err];
+				[fm removeItemAtURL:[bundlePath URLByAppendingPathComponent:@"NovaDash"] error:&err];
 				if (err) {
 					AppLog(@"Couldn't remove patched binary: %@", err);
 				} else {
-					[fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] toURL:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] error:&err];
+					[fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] toURL:[bundlePath URLByAppendingPathComponent:@"NovaDash"] error:&err];
 					if (err) {
 						AppLog(@"Couldn't copy binary: %@", err);
 					} else {
@@ -1559,7 +1559,7 @@ extern NSString *g_commitHash;
 						AppLog(@"Frameworks dir already exists, skipping...");
 					}
 					AppLog(@"Patching GD with new load commands...");
-					NSString* execPath = [bundlePath URLByAppendingPathComponent:@"GeometryJump"].path;
+					NSString* execPath = [bundlePath URLByAppendingPathComponent:@"NovaDash"].path;
 					NSString* error = LCParseMachO(execPath.UTF8String, false, ^(const char* path, struct mach_header_64* header, int fd, void* filePtr) {
 						LCPatchExecSlice(path, header, [[Utils getPrefs] boolForKey:@"ENTERPRISE_MODE"], YES);
 					});
@@ -1598,15 +1598,15 @@ extern NSString *g_commitHash;
 				AppLog(@"Frameworks dir doesn't exist, skipping...");
 			}
 
-			if (![fm fileExistsAtPath:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"].path]) {
+			if (![fm fileExistsAtPath:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"].path]) {
 				AppLog(@"Not restoring binary.");
 			} else {
 				NSError* err;
-				[fm removeItemAtURL:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] error:&err];
+				[fm removeItemAtURL:[bundlePath URLByAppendingPathComponent:@"NovaDash"] error:&err];
 				if (err) {
 					AppLog(@"Couldn't remove patched binary: %@", err);
 				} else {
-					[fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] toURL:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] error:&err];
+					[fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] toURL:[bundlePath URLByAppendingPathComponent:@"NovaDash"] error:&err];
 					if (err) {
 						AppLog(@"Couldn't copy binary: %@", err);
 					} else {

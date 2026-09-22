@@ -190,7 +190,7 @@ extern NSString* g_commitHash;
 	NSString* patchChecksum = [[Utils getPrefs] stringForKey:@"PATCH_CHECKSUM"];
 
 	NSURL* bundlePath = [[LCPath bundlePath] URLByAppendingPathComponent:[Utils gdBundleName]];
-	NSString* checksum = [Patcher getPatchChecksum:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] withSafeMode:NO];
+	NSString* checksum = [Patcher getPatchChecksum:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] withSafeMode:NO];
 	if ((checksum != nil && ![checksum isEqualToString:patchChecksum])) {
 		AppLog(@"Patch diff: %@ vs %@", checksum, patchChecksum);
 		self.patchStatus.backgroundColor = [UIColor systemYellowColor];
@@ -591,7 +591,7 @@ extern NSString* g_commitHash;
 - (void)signAppWithSafeMode:(void (^)(BOOL success, NSString* error))completionHandler {
 	NSURL* bundlePath = [[LCPath bundlePath] URLByAppendingPathComponent:[Utils gdBundleName]];
 	if ([[Utils getPrefs] boolForKey:@"JITLESS"]) {
-		[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] to:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] withHandlerAddress:0x8c4000
+		[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] to:[bundlePath URLByAppendingPathComponent:@"NovaDash"] withHandlerAddress:0x8c4000
 						 force:NO
 				  withSafeMode:YES
 			  withEntitlements:NO completionHandler:^(BOOL success, NSString* error) {
@@ -613,7 +613,7 @@ extern NSString* g_commitHash;
 								  if (status != 0) {
 									  return completionHandler(NO, @"launcher.error.sign.invalidcert2".loc);
 								  }
-								  LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.robtop.geometryjump.app"].path];
+								  LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.dort.novadashhhhhhh.app"].path];
 								  [app patchExecAndSignIfNeedWithCompletionHandler:^(BOOL signSuccess, NSString* signError) {
 									  if (signError)
 										  return completionHandler(NO, signError);
@@ -652,7 +652,7 @@ extern NSString* g_commitHash;
 							if (status != 0) {
 								return completionHandler(NO, @"launcher.error.sign.invalidcert2".loc);
 							}
-							LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.robtop.geometryjump.app"].path];
+							LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.dort.novadashhhhhhh.app"].path];
 							[Patcher patchGeode:^(BOOL success, NSString *error) {
 								AppLog(@"Patched Geode (Success: %@, Error: %@)", (success) ? @"YES" : @"NO", error);
 								[app patchExecAndSignIfNeedWithCompletionHandler:^(BOOL signSuccess, NSString* signError) {
@@ -695,7 +695,7 @@ extern NSString* g_commitHash;
 							if (status != 0) {
 								return completionHandler(NO, @"launcher.error.sign.invalidcert2".loc);
 							}
-							LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.robtop.geometryjump.app"].path];
+							LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.dort.novadashhhhhhh.app"].path];
 							[Patcher patchGeode:^(BOOL success, NSString *error) {
 								AppLog(@"Patched Geode (Success: %@, Error: %@)", (success) ? @"YES" : @"NO", error);
 								[app patchExecAndSignIfNeedWithCompletionHandler:^(BOOL signSuccess, NSString* signError) {
@@ -739,7 +739,7 @@ extern NSString* g_commitHash;
 	}
 	NSURL* bundlePath = [[LCPath bundlePath] URLByAppendingPathComponent:[Utils gdBundleName]];
 	if ([[Utils getPrefs] boolForKey:@"JITLESS"]) {
-		[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] to:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] withHandlerAddress:0x8c4000
+		[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] to:[bundlePath URLByAppendingPathComponent:@"NovaDash"] withHandlerAddress:0x8c4000
 						 force:NO
 				  withSafeMode:NO
 			  withEntitlements:NO completionHandler:^(BOOL success, NSString* error) {
@@ -761,7 +761,7 @@ extern NSString* g_commitHash;
 								  if (status != 0) {
 									  return completionHandler(NO, @"launcher.error.sign.invalidcert2".loc);
 								  }
-								  LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.robtop.geometryjump.app"].path];
+								  LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.dort.novadashhhhhhh.app"].path];
 								  [app patchExecAndSignIfNeedWithCompletionHandler:^(BOOL signSuccess, NSString* signError) {
 									  if (signError)
 										  return completionHandler(NO, signError);
@@ -809,7 +809,7 @@ extern NSString* g_commitHash;
 							if (status != 0) {
 								return completionHandler(NO, @"launcher.error.sign.invalidcert2".loc);
 							}
-							LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.robtop.geometryjump.app"].path];
+							LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.dort.novadashhhhhhh.app"].path];
 							[Patcher patchGeode:^(BOOL success, NSString *error) {
 								AppLog(@"Patched Geode (Success: %@, Error: %@)", (success) ? @"YES" : @"NO", error);
 								[app patchExecAndSignIfNeedWithCompletionHandler:^(BOOL signSuccess, NSString* signError) {
@@ -858,7 +858,7 @@ extern NSString* g_commitHash;
 							if (status != 0) {
 								return completionHandler(NO, @"launcher.error.sign.invalidcert2".loc);
 							}
-							LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.robtop.geometryjump.app"].path];
+							LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.dort.novadashhhhhhh.app"].path];
 							[Patcher patchGeode:^(BOOL success, NSString *error) {
 								AppLog(@"Patched Geode (Success: %@, Error: %@)", (success) ? @"YES" : @"NO", error);
 								[app patchExecAndSignIfNeedWithCompletionHandler:^(BOOL signSuccess, NSString* signError) {
@@ -882,7 +882,7 @@ extern NSString* g_commitHash;
 			});
 		}];
 	} else {
-		[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] to:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] withHandlerAddress:0x8c4000
+		[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] to:[bundlePath URLByAppendingPathComponent:@"NovaDash"] withHandlerAddress:0x8c4000
 						 force:NO
 				  withSafeMode:NO
 			  withEntitlements:NO completionHandler:^(BOOL success, NSString* error) { completionHandler(success, error); }];
@@ -1074,7 +1074,7 @@ extern NSString* g_commitHash;
 	NSString* uniqId = [[[UIDevice currentDevice] identifierForVendor] UUIDString];
 	[fm createFileAtPath:[bundlePath URLByAppendingPathComponent:@"sf.bd"].path contents:[uniqId dataUsingEncoding:NSUTF8StringEncoding] attributes:@{}];
 
-	[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] to:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] withHandlerAddress:0x8c4000
+	[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] to:[bundlePath URLByAppendingPathComponent:@"NovaDash"] withHandlerAddress:0x8c4000
 					 force:[[Utils getPrefs] boolForKey:@"IS_COMPRESSING_IPA"]
 			  withSafeMode:safeMode
 		  withEntitlements:YES completionHandler:^(BOOL success, NSString* error) {
@@ -1085,7 +1085,7 @@ extern NSString* g_commitHash;
 						  /*if ([fm fileExistsAtPath:[bundlePath URLByAppendingPathComponent:@"GeodeHelper"].path]) {
 							  [fm removeItemAtURL:[bundlePath URLByAppendingPathComponent:@"GeodeHelper"] error:nil];
 						  }
-						  [fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] toURL:[bundlePath URLByAppendingPathComponent:@"GeodeHelper"] error:nil];*/
+						  [fm copyItemAtURL:[bundlePath URLByAppendingPathComponent:@"NovaDash"] toURL:[bundlePath URLByAppendingPathComponent:@"GeodeHelper"] error:nil];*/
 						  [self.progressBar setProgressText:@"launcher.progress.patch.text".loc];
 						  [self.progressBar setHidden:NO];
 						  [self.progressBar setCancelHidden:YES];

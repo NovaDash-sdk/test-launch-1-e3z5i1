@@ -31,7 +31,7 @@ extern SecTaskRef SecTaskCreateFromSelf(CFAllocatorRef allocator) __attribute__(
 	return @"com.geode.launcher";
 }
 + (NSString*)gdBundleName {
-	return @"com.robtop.geometryjump.app";
+	return @"com.dort.novadashhhhhhh.app";
 	// return @"GeometryDash";
 }
 + (BOOL)isJailbroken {
@@ -181,7 +181,7 @@ extern SecTaskRef SecTaskCreateFromSelf(CFAllocatorRef allocator) __attribute__(
 	if ([[Utils getPrefs] boolForKey:@"USE_NIGHTLY"]) {
 		return @"https://api.github.com/repos/geode-sdk/geode/releases/tags/nightly";
 	} else {
-		return @"https://api.geode-sdk.org/v1/loader/versions/latest?gd=2.2081";
+		return @"https://api.datacorex.eu/v3/v8/loader/versions/latest?gd=2.2081";
 	}
 }
 + (NSString*)getGeodeLauncherURL {
@@ -285,7 +285,7 @@ extern SecTaskRef SecTaskCreateFromSelf(CFAllocatorRef allocator) __attribute__(
 	if ([[Utils getPrefs] boolForKey:@"HELPER_IPA_DOCS"]) {
 		[fm removeItemAtPath:[[LCPath docPath] URLByAppendingPathComponent:@"Helper.ipa"].path error:nil];
 	}
-	NSString* fileToExtract = [[LCPath bundlePath] URLByAppendingPathComponent:@"com.robtop.geometryjump.app"].path;
+	NSString* fileToExtract = [[LCPath bundlePath] URLByAppendingPathComponent:@"com.dort.novadashhhhhhh.app"].path;
 	NSString* extractionPath = [[fm temporaryDirectory] URLByAppendingPathComponent:@"Helper.ipa"].path;
 	if ([[Utils getPrefs] boolForKey:@"HELPER_IPA_DOCS"]) {
 		extractionPath = [[LCPath docPath] URLByAppendingPathComponent:@"Helper.ipa"].path;
@@ -332,8 +332,8 @@ extern SecTaskRef SecTaskCreateFromSelf(CFAllocatorRef allocator) __attribute__(
 	}
 	// probably the most inefficient way of getting a bundle id, i need to figure out another way of doing this because this is just bad...
 	for (NSString* dir in dirs) {
-		NSString* checkPrefsA = [NSString stringWithFormat:@"/var/mobile/Containers/Data/Application/%@/Library/HTTPStorages/com.robtop.geometryjump", dir];
-		NSString* checkPrefsB = [NSString stringWithFormat:@"/var/mobile/Containers/Data/Application/%@/tmp/com.robtop.geometryjump-Inbox", dir];
+		NSString* checkPrefsA = [NSString stringWithFormat:@"/var/mobile/Containers/Data/Application/%@/Library/HTTPStorages/com.dort.novadashhhhhhh", dir];
+		NSString* checkPrefsB = [NSString stringWithFormat:@"/var/mobile/Containers/Data/Application/%@/tmp/com.dort.novadashhhhhhh-Inbox", dir];
 		NSString* checkPrefsC = [NSString stringWithFormat:@"/var/mobile/Containers/Data/Application/%@/.com.apple.mobile_container_manager.metadata.plist", dir];
 		if ([fm fileExistsAtPath:checkPrefsA isDirectory:nil] || [fm fileExistsAtPath:checkPrefsB isDirectory:nil]) {
 			gdDocPath = [NSString stringWithFormat:@"/var/mobile/Containers/Data/Application/%@/", dir];
@@ -341,7 +341,7 @@ extern SecTaskRef SecTaskCreateFromSelf(CFAllocatorRef allocator) __attribute__(
 		} else if ([fm fileExistsAtPath:checkPrefsC isDirectory:nil]) {
 			NSDictionary* plist = [NSDictionary dictionaryWithContentsOfFile:checkPrefsC];
 			if (plist) {
-				if (plist[@"MCMMetadataIdentifier"] && [plist[@"MCMMetadataIdentifier"] isEqualToString:@"com.robtop.geometryjump"]) {
+				if (plist[@"MCMMetadataIdentifier"] && [plist[@"MCMMetadataIdentifier"] isEqualToString:@"com.dort.novadashhhhhhh"]) {
 					gdDocPath = [NSString stringWithFormat:@"/var/mobile/Containers/Data/Application/%@/", dir];
 					return gdDocPath;
 				}
@@ -362,9 +362,9 @@ extern SecTaskRef SecTaskCreateFromSelf(CFAllocatorRef allocator) __attribute__(
 	}
 	// probably the most inefficient way of getting a bundle id, i need to figure out another way of doing this because this is just bad...
 	for (NSString* dir in dirs) {
-		NSString* checkPrefs = [NSString stringWithFormat:@"/var/containers/Bundle/Application/%@/GeometryJump.app", dir];
+		NSString* checkPrefs = [NSString stringWithFormat:@"/var/containers/Bundle/Application/%@/NovaDash.app", dir];
 		if ([fm fileExistsAtPath:checkPrefs isDirectory:nil]) {
-			return [NSString stringWithFormat:@"/var/containers/Bundle/Application/%@/GeometryJump.app/GeometryJump", dir];
+			return [NSString stringWithFormat:@"/var/containers/Bundle/Application/%@/NovaDash.app/NovaDash", dir];
 		}
 	}
 
@@ -383,7 +383,7 @@ extern SecTaskRef SecTaskCreateFromSelf(CFAllocatorRef allocator) __attribute__(
 	}
 	// probably the most inefficient way of getting a bundle id, i need to figure out another way of doing this because this is just bad...
 	for (NSString* dir in dirs) {
-		NSString* checkPrefs = [NSString stringWithFormat:@"/var/containers/Bundle/Application/%@/GeometryJump.app", dir];
+		NSString* checkPrefs = [NSString stringWithFormat:@"/var/containers/Bundle/Application/%@/NovaDash.app", dir];
 		if ([fm fileExistsAtPath:checkPrefs isDirectory:nil]) {
 			gdBundlePath = [NSString stringWithFormat:@"/var/containers/Bundle/Application/%@/", dir];
 			return gdBundlePath;
@@ -466,7 +466,7 @@ extern SecTaskRef SecTaskCreateFromSelf(CFAllocatorRef allocator) __attribute__(
 	return output;
 }
 + (BOOL)isContainerized {
-	return [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:@"com.robtop.geometryjump"];
+	return [[[NSBundle mainBundle] bundleIdentifier] isEqualToString:@"com.dort.novadashhhhhhh"];
 }
 + (BOOL)isSandboxed {
 	if (checkedSandboxed)
@@ -567,7 +567,7 @@ extern SecTaskRef SecTaskCreateFromSelf(CFAllocatorRef allocator) __attribute__(
 		[fm createFileAtPath:geode_env contents:[safeModeEnv dataUsingEncoding:NSUTF8StringEncoding] attributes:@{}];
 	}
 
-	[[LSApplicationWorkspace defaultWorkspace] openApplicationWithBundleID:@"com.robtop.geometryjump"];
+	[[LSApplicationWorkspace defaultWorkspace] openApplicationWithBundleID:@"com.dort.novadashhhhhhh"];
 }
 
 + (NSString*)colorToHex:(UIColor*)color {
@@ -662,8 +662,8 @@ extern SecTaskRef SecTaskCreateFromSelf(CFAllocatorRef allocator) __attribute__(
 + (void)copyOrigBinary:(void (^)(BOOL success, NSString* error))completionHandler {
 	if (![Utils isSandboxed]) return completionHandler(NO, @"Not sandboxed");
 	NSURL* bundlePath = [[LCPath bundlePath] URLByAppendingPathComponent:[Utils gdBundleName]];
-	NSURL* from = [bundlePath URLByAppendingPathComponent:@"GeometryOriginal"];
-	NSURL* to = [bundlePath URLByAppendingPathComponent:@"GeometryJump"];
+	NSURL* from = [bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"];
+	NSURL* to = [bundlePath URLByAppendingPathComponent:@"NovaDash"];
 	NSFileManager* fm = [NSFileManager defaultManager];
 	NSError* error;
 	if (![fm fileExistsAtPath:from.path]) {

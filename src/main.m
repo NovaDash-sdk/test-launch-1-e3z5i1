@@ -845,7 +845,7 @@ int GeodeMain(int argc, char* argv[]) {
 				NSURL* bundlePath = [[LCPath bundlePath] URLByAppendingPathComponent:[Utils gdBundleName]];
 				AppLog(@"Checking if GD needs to be patched & signed...");
 				dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-					[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] to:[bundlePath URLByAppendingPathComponent:@"GeometryJump"] withHandlerAddress:0x8c4000 force:NO withSafeMode:safeMode withEntitlements:NO completionHandler:^(BOOL success, NSString* error) {
+					[Patcher patchGDBinary:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] to:[bundlePath URLByAppendingPathComponent:@"NovaDash"] withHandlerAddress:0x8c4000 force:NO withSafeMode:safeMode withEntitlements:NO completionHandler:^(BOOL success, NSString* error) {
 						AppLog(@"Seeing conditions");
 						if (success) {
 							BOOL force = NO;
@@ -873,7 +873,7 @@ int GeodeMain(int argc, char* argv[]) {
 										return;
 									}
 									AppLog(@"Sign (2/3)");
-									LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.robtop.geometryjump.app"].path];
+									LCAppInfo* app = [[LCAppInfo alloc] initWithBundlePath:[[LCPath bundlePath] URLByAppendingPathComponent:@"com.dort.novadashhhhhhh.app"].path];
 									[app patchExecAndSignIfNeedWithCompletionHandler:^(BOOL signSuccess, NSString* signError) {
 										AppLog(@"Sign (3/3)");
 										if (signError) {

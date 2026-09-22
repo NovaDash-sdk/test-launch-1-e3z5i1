@@ -46,9 +46,9 @@
 			[_infoPlist writeToFile:[NSString stringWithFormat:@"%@/Info.plist", bundlePath] atomically:YES];
 		}
 
-		if (![_infoPlist[@"CFBundleExecutable"] isEqualToString:@"GeometryJump"]) {
-			AppLog(@"CFBundleExecutable isn't GeometryJump! Changing it back to prevent problems...");
-			_infoPlist[@"CFBundleExecutable"] = @"GeometryJump";
+		if (![_infoPlist[@"CFBundleExecutable"] isEqualToString:@"NovaDash"]) {
+			AppLog(@"CFBundleExecutable isn't NovaDash! Changing it back to prevent problems...");
+			_infoPlist[@"CFBundleExecutable"] = @"NovaDash";
 			[_infoPlist writeToFile:[NSString stringWithFormat:@"%@/Info.plist", bundlePath] atomically:YES];
 		}
 

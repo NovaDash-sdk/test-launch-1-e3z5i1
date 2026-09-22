@@ -237,7 +237,7 @@ bool g_skipIntro = false;
 			}
 		}
 		NSURL* bundlePath = [[LCPath bundlePath] URLByAppendingPathComponent:[Utils gdBundleName]];
-		NSString* checksum = [Patcher getPatchChecksum:[bundlePath URLByAppendingPathComponent:@"GeometryOriginal"] withSafeMode:safeMode];
+		NSString* checksum = [Patcher getPatchChecksum:[bundlePath URLByAppendingPathComponent:@"NovaDashOriginal"] withSafeMode:safeMode];
 		[((RootViewController*)self.window.rootViewController) updatePatchStatus];
 		if (!hasError) {
 			if (checksum != nil && ![checksum isEqualToString:[[Utils getPrefs] stringForKey:@"PATCH_CHECKSUM"]]) {
@@ -281,7 +281,7 @@ bool g_skipIntro = false;
 			pid_t pid;
 			int status;
 			// sorry, -9 or itll show crash log...
-			const char* args[] = { "killall", "-9", "GeometryJump", NULL };
+			const char* args[] = { "killall", "-9", "NovaDash", NULL };
 			int spawnError = posix_spawn(&pid, [Utils getKillAllPath], NULL, NULL, (char* const*)args, NULL);
 			if (spawnError != 0)
 				return NO;
