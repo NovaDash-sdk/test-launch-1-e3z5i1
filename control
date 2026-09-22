@@ -1,4 +1,4 @@
-Package: com.geode.launcher
+Package: com.dort.novageode.launcher
 Name: Geode
 Version: 1.5.5
 Architecture: iphoneos-arm
